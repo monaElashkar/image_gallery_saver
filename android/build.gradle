@@ -1,48 +1,36 @@
-group 'com.example.imagegallerysaver'
-version '1.0-SNAPSHOT'
-
-buildscript {
-    ext.kotlin_version = '1.9.23' // ✅ Latest stable
-    repositories {
-        google()
-        mavenCentral()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:8.2.0'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-    }
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
 }
 
-allprojects {
-    repositories {
-        google()
-        mavenCentral()
-    }
-}
+group = 'com.example.imagegallerysaver'
+version = '1.0-SNAPSHOT'
 
-apply plugin: 'com.android.library'
-apply plugin: 'org.jetbrains.kotlin.android'
+repositories {
+    google()
+    mavenCentral()
+}
 
 android {
-    compileSdkVersion 33
     namespace "com.example.imagegallerysaver"
+    compileSdk = 33
 
     defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 33
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        minSdk = 21
+        targetSdk = 33
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = '1.8'
     }
 
-    lintOptions {
+    lint {
         disable 'InvalidPackage'
     }
 
@@ -52,5 +40,10 @@ android {
 }
 
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+}
+
+// ✅ Must be at bottom and outside android {} to be picked up correctly
+kotlin {
+    jvmToolchain(8)
 }
