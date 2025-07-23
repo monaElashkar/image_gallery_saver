@@ -2,7 +2,7 @@ group 'com.example.imagegallerysaver'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.9.23'
+    ext.kotlin_version = '1.9.23' // ✅ Latest stable
     repositories {
         google()
         mavenCentral()
@@ -13,7 +13,7 @@ buildscript {
     }
 }
 
-rootProject.allprojects {
+allprojects {
     repositories {
         google()
         mavenCentral()
@@ -38,6 +38,10 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
     lintOptions {
         disable 'InvalidPackage'
     }
@@ -49,9 +53,4 @@ android {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-}
-
-// ✅ Must be OUTSIDE android {}
-kotlin {
-    jvmToolchain(8)
 }
