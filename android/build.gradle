@@ -25,15 +25,11 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 33 // ✅ upgrade for AGP 8+ compatibility
+    compileSdkVersion 33
     namespace "com.example.imagegallerysaver"
 
-    sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
-    }
-
     defaultConfig {
-        minSdkVersion 21 // ✅ AGP 8 prefers at least 21
+        minSdkVersion 21
         targetSdkVersion 33
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -43,14 +39,19 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    kotlinOptions {
-        jvmTarget = '1.8'
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
     }
 
     lintOptions {
         disable 'InvalidPackage'
     }
 }
+
+kotlin {
+    jvmToolchain(8)
+}
+
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
