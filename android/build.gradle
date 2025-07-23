@@ -11,6 +11,18 @@ repositories {
     mavenCentral()
 }
 
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(8)
+    }
+}
+
+kotlin {
+    jvmToolchain {
+        languageVersion.set(JavaLanguageVersion.of(8))
+    }
+}
+
 android {
     namespace "com.example.imagegallerysaver"
     compileSdk = 33
@@ -41,9 +53,4 @@ android {
 
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib"
-}
-
-// ✅ Must be at bottom and outside android {} to be picked up correctly
-kotlin {
-    jvmToolchain(8)
 }
