@@ -6,14 +6,9 @@ plugins {
 group = 'com.example.imagegallerysaver'
 version = '1.0-SNAPSHOT'
 
-repositories {
-    google()
-    mavenCentral()
-}
-
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(8)
+        languageVersion.set(JavaLanguageVersion.of(8))
     }
 }
 
@@ -26,10 +21,6 @@ kotlin {
 android {
     compileSdkVersion 30
     namespace "com.example.imagegallerysaver"
-
-    sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
-    }
 
     defaultConfig {
         minSdkVersion 16
@@ -47,6 +38,10 @@ android {
 
     kotlinOptions {
         jvmTarget = "1.8"
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
     }
 }
 
